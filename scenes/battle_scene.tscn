@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://bmvbn1asp3xx2"]
+
+[ext_resource type="Script" uid="uid://c08jdmsuppmaf" path="res://scenes/scripts/battle_scene.gd" id="1_rca61"]
+[ext_resource type="Texture2D" uid="uid://behmphqr2favu" path="res://assets/img/plateau.png" id="2_8qdv8"]
+[ext_resource type="Texture2D" uid="uid://tjw1neocehfo" path="res://assets/img/bg.jpg" id="3_pxwbd"]
+[ext_resource type="Script" uid="uid://1vpcqd4gru20" path="res://scenes/spot_container.gd" id="4_8qdv8"]
+[ext_resource type="PackedScene" uid="uid://oc8x8f1pkyox" path="res://scenes/spot.tscn" id="5_pxwbd"]
+
+[node name="BattleScene" type="Node2D"]
+script = ExtResource("1_rca61")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(512, 360)
+
+[node name="plateau" type="Sprite2D" parent="."]
+position = Vector2(512, 412.462)
+scale = Vector2(1.59844, 1.46541)
+texture = ExtResource("2_8qdv8")
+
+[node name="Fond" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(512.75, 86.28)
+scale = Vector2(1.59766, 1.068)
+texture = ExtResource("3_pxwbd")
+
+[node name="SpotContainer" type="Node2D" parent="."]
+script = ExtResource("4_8qdv8")
+spot_scene = ExtResource("5_pxwbd")
+num_players = 3

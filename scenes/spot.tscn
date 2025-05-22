@@ -1,0 +1,113 @@
+[gd_scene load_steps=21 format=3 uid="uid://oc8x8f1pkyox"]
+
+[ext_resource type="Script" uid="uid://dnm8n4kr3jj2k" path="res://scenes/scripts/spot.gd" id="1_f2ny0"]
+[ext_resource type="Texture2D" uid="uid://yyes0hgeyol5" path="res://assets/img/spots/shadow.png" id="1_i2x4l"]
+[ext_resource type="PackedScene" uid="uid://cmfpt1lcdyeg2" path="res://scenes/unit.tscn" id="2_bhfl7"]
+[ext_resource type="Texture2D" uid="uid://cvnnjvvkmmmma" path="res://assets/img/spots/neutral.png" id="2_f2ny0"]
+[ext_resource type="Texture2D" uid="uid://c81pypoagv22b" path="res://assets/img/spots/selected.png" id="2_m67cj"]
+[ext_resource type="Texture2D" uid="uid://e8rfgfcbd7mi" path="res://assets/img/spots/target.png" id="3_37fjl"]
+[ext_resource type="Texture2D" uid="uid://ctc5ro4uubun3" path="res://assets/img/spots/fences.png" id="3_bhfl7"]
+[ext_resource type="PackedScene" uid="uid://cjwdiat5jm3fh" path="res://scenes/fight_animations.tscn" id="3_hxga3"]
+[ext_resource type="Texture2D" uid="uid://g4hruaw32myw" path="res://assets/img/spots/sheep.png" id="12_pkw66"]
+[ext_resource type="Texture2D" uid="uid://cuatuskidgkju" path="res://assets/img/spots/pig.png" id="13_4tkf2"]
+[ext_resource type="Texture2D" uid="uid://tuw7ujn14is8" path="res://assets/img/spots/pinguin.png" id="14_bjmai"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eyi0y"]
+atlas = ExtResource("1_i2x4l")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mro3h"]
+atlas = ExtResource("3_bhfl7")
+region = Rect2(0, 300, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i2x4l"]
+atlas = ExtResource("2_m67cj")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f2ny0"]
+atlas = ExtResource("3_37fjl")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_njgp2"]
+atlas = ExtResource("2_f2ny0")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sgyxd"]
+atlas = ExtResource("12_pkw66")
+region = Rect2(0, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n1yfl"]
+atlas = ExtResource("13_4tkf2")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2r7qn"]
+atlas = ExtResource("14_bjmai")
+region = Rect2(5, 153, 80, 80)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f2ny0"]
+size = Vector2(74, 81)
+
+[node name="Spot" type="Area2D"]
+script = ExtResource("1_f2ny0")
+unit_scene = ExtResource("2_bhfl7")
+fight_animation = ExtResource("3_hxga3")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+visible = false
+z_index = 1
+texture = SubResource("AtlasTexture_eyi0y")
+offset = Vector2(4, 2)
+
+[node name="Fence" type="Sprite2D" parent="."]
+z_index = 2
+texture = SubResource("AtlasTexture_mro3h")
+offset = Vector2(2, 2)
+
+[node name="Selected" type="Sprite2D" parent="."]
+visible = false
+z_index = 2
+texture = SubResource("AtlasTexture_i2x4l")
+
+[node name="Target" type="Sprite2D" parent="."]
+visible = false
+z_index = 2
+position = Vector2(-2, -4)
+texture = SubResource("AtlasTexture_f2ny0")
+offset = Vector2(4, 0)
+
+[node name="GroundNeutral" type="Sprite2D" parent="."]
+visible = false
+texture = SubResource("AtlasTexture_njgp2")
+
+[node name="GroundSheep" type="Sprite2D" parent="."]
+visible = false
+texture = SubResource("AtlasTexture_sgyxd")
+
+[node name="GroundPig" type="Sprite2D" parent="."]
+visible = false
+texture = SubResource("AtlasTexture_n1yfl")
+
+[node name="GroundPinguin" type="Sprite2D" parent="."]
+visible = false
+texture = SubResource("AtlasTexture_2r7qn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2, -3.5)
+shape = SubResource("RectangleShape2D_f2ny0")
+
+[node name="PopAmount" type="RichTextLabel" parent="."]
+z_index = 20
+offset_left = -16.0
+offset_top = -55.0
+offset_right = 20.0
+offset_bottom = -32.0
+theme_override_constants/outline_size = 3
+text = "0"
+horizontal_alignment = 1
+
+[node name="UnitContainer" type="Node2D" parent="."]
+z_index = 2
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
