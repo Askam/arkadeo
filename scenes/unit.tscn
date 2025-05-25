@@ -1,6 +1,6 @@
-[gd_scene load_steps=88 format=3 uid="uid://cmfpt1lcdyeg2"]
+[gd_scene load_steps=89 format=3 uid="uid://cmfpt1lcdyeg2"]
 
-[ext_resource type="Script" uid="uid://dv1s0mumtcucv" path="res://scenes/unit.gd" id="1_5pi0r"]
+[ext_resource type="Script" uid="uid://dv1s0mumtcucv" path="res://scenes/scripts/unit.gd" id="1_5pi0r"]
 [ext_resource type="Texture2D" uid="uid://5f6x4lblt4jm" path="res://assets/anim/pig_down.png" id="1_oee7j"]
 [ext_resource type="Texture2D" uid="uid://8g80mqq0aew" path="res://assets/anim/pig.png" id="2_7gdr1"]
 [ext_resource type="Texture2D" uid="uid://ce68gnx1sfr72" path="res://assets/anim/pig_still.png" id="3_dh01e"]
@@ -170,7 +170,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_siy63")
 }],
-"loop": true,
+"loop": false,
 "name": &"splash",
 "speed": 10.0
 }, {
@@ -366,7 +366,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_a1u1f")
 }],
-"loop": true,
+"loop": false,
 "name": &"splash",
 "speed": 10.0
 }, {
@@ -553,7 +553,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_yebpl")
 }],
-"loop": true,
+"loop": false,
 "name": &"splash",
 "speed": 10.0
 }, {
@@ -583,26 +583,34 @@ animations = [{
 "speed": 10.0
 }]
 
-[node name="Unit" type="Node2D"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5pi0r"]
+radius = 4.0
+height = 14.0
+
+[node name="Unit" type="CharacterBody2D"]
 z_index = 10
 script = ExtResource("1_5pi0r")
 
 [node name="Pig" type="AnimatedSprite2D" parent="."]
-visible = false
 z_index = 2
 sprite_frames = SubResource("SpriteFrames_2l1pa")
-animation = &"still"
-frame_progress = 0.179845
+animation = &"splash"
+frame = 6
+frame_progress = 1.0
 
 [node name="Sheep" type="AnimatedSprite2D" parent="."]
 visible = false
 z_index = 2
 sprite_frames = SubResource("SpriteFrames_mao6n")
-animation = &"still"
-frame_progress = 0.139046
+animation = &"splash"
 
 [node name="Penguin" type="AnimatedSprite2D" parent="."]
+visible = false
 z_index = 2
 sprite_frames = SubResource("SpriteFrames_0hyva")
-animation = &"still"
-frame_progress = 0.831752
+animation = &"splash"
+frame = 6
+frame_progress = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_5pi0r")

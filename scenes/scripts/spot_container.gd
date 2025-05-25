@@ -19,11 +19,9 @@ func _ready() -> void:
 	spawn_spots()
 	rng.randomize()	
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
-	
 	
 #Génération du terrain
 func spawn_spots():
@@ -117,7 +115,6 @@ func is_far_enough_from_list(pos: Vector2, others: Array, min_dist: float) -> bo
 		if pos.distance_to(o) < min_dist:
 			return false
 	return true
-
 
 func randi_range(min_val: int, max_val: int) -> int:
 	return rng.randi_range(min_val, max_val)

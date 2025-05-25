@@ -1,8 +1,8 @@
 extends Node2D
 
-var selected_spot: Area2D = null
+var selected_spot: StaticBody2D = null
 var is_dragging := false
-var current_hover: Area2D = null
+var current_hover: StaticBody2D = null
 var drag_line: Line2D = null
 
 func _ready():
@@ -41,6 +41,13 @@ func on_spot_click_start(spot) -> void:
 
 func on_spot_click_end(spot) -> void:
 	if is_dragging and selected_spot != null and spot != selected_spot:
+		$SwarmLauncher.launch_swarm(selected_spot,spot)
 		print("Swarm from %s to %s" % [selected_spot.name, spot.name])  # Placeholder
-	selected_spot.set_selected(false)
+	if selected_spot :
+		selected_spot.set_selected(false)
+		spot.set_target(true)
+		drag_line.queue_free()
+	is_dragging = false
+	selected_spot = null
+	
 	
