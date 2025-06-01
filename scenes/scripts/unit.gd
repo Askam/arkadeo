@@ -26,19 +26,6 @@ func _physics_process(delta: float) -> void:
 func _process(_delta: float) -> void:
 	pass
 
-
-func on_reach_target() -> void:
-	if target is StaticBody2D and target.has_method("spotOwner"):
-		var target_race = target.spotOwner
-		if target_race != race:
-			print("⚔ Combat déclenché !") # 🔁 Placeholder combat
-		else:
-			print("🤝 Transfert d'unités") # 🔁 Placeholder transfert
-	else:
-		print("🎯 Cible atteinte mais non reconnue")
-
-	queue_free() # L'unité disparaît après l'action
-
 func set_race(newRace: String) -> void:
 	$Sheep.visible = false
 	$Pig.visible = false
@@ -85,5 +72,6 @@ func kill() -> void:
 
 	active_sprite.animation = "splash"
 	active_sprite.play()
-	await get_tree().create_timer(1).timeout
+	var anim_length = active_sprite.frames.get_animation_len("splash")
+	await get_tree().create_timer(anim_length).timeout
 	queue_free()

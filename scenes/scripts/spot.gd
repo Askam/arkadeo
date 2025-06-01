@@ -7,7 +7,6 @@ var isSelected = false
 var isTarget = false
 var battle = false
 
-var wait_pop := 0
 var cur_swarmed := false
 var time_accumulator := 0.0
 var maxVisiblePop
@@ -34,7 +33,7 @@ func get_pop_cooldown_secs() -> float:
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	wait_pop = get_pop_cooldown_secs()
+	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
